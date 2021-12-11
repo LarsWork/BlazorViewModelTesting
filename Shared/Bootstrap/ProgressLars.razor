@@ -1,0 +1,29 @@
+﻿@using Xakpc.BlazorBits.Bootstrap.ViewModels
+@inherits Xakpc.BlazorBits.Bootstrap.ViewModels.ContextComponentBase;
+
+<div class="progress @Class" style="@(Height == null ? "" : $"height: {Height}px")">
+    <div 
+        class="progress-bar" 
+        role="progressbar" 
+        style="@($"width: {LarsProgressViewModel.Progress}%")" 
+        aria-valuenow="@LarsProgressViewModel.Progress" 
+        aria-valuemin="0" 
+        aria-valuemax="100">
+        @((LarsProgressViewModel.Progress/100f).ToString("P0"))
+    </div>
+</div>
+<div>
+    <CommandButton class="btn-primary" Command="@LarsProgressViewModel.Add">+</CommandButton>
+    <CommandButton class="btn-secondary" Command="@LarsProgressViewModel.Subtract">-</CommandButton>
+</div>
+
+@code {
+    [CascadingParameter(Name="LarsProgressViewModel")]
+    public LarsProgressViewModel LarsProgressViewModel { get; set; }
+    
+    [Parameter]
+    public int? Height {get;set;}
+
+    [Parameter]
+    public string Class {get;set;}
+}

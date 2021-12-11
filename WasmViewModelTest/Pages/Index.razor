@@ -1,0 +1,21 @@
+﻿@page "/"
+@using global::WasmViewModelTest
+
+<PageTitle>Index</PageTitle>
+
+<h1>Nestedobject test</h1>
+@{
+    SimpleViewModel vm = new SimpleViewModel();
+}
+
+<CascadingValue Value=vm>
+    <CheckboxComponent Name="1"></CheckboxComponent>
+    <CheckboxComponent Name="2"></CheckboxComponent>
+    <CheckboxComponent Name="3"></CheckboxComponent>
+</CascadingValue>
+
+
+
+
+
+

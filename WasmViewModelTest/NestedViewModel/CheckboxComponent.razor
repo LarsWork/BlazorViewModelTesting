@@ -1,0 +1,15 @@
+﻿@namespace WasmViewModelTest
+@inherits ContextComponentBase
+@code {
+    [CascadingParameter]
+    public SimpleViewModel SimpleViewModel
+    {
+        get => base.DataContext as SimpleViewModel;
+        set => base.DataContext = value;
+    }
+    [Parameter]
+    public string? Name { get; set; }
+}
+<div>
+    Checkbox @Name: <input type="checkbox" @bind=SimpleViewModel.CheckBoxState></input>
+</div>
