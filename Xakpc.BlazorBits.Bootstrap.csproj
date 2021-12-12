@@ -4,4 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="WasmViewModelTest\**" />
+    <Content Remove="WasmViewModelTest\**" />
+    <EmbeddedResource Remove="WasmViewModelTest\**" />
+    <None Remove="WasmViewModelTest\**" />
+  </ItemGroup>
+
 </Project>
