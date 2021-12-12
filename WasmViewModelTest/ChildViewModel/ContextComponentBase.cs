@@ -9,6 +9,8 @@ namespace WasmViewModelTest
     /// </summary>
     public class ContextComponentBase : ComponentBase
     {
+        private string _componentClassName;
+
         /// <summary>
         /// 
         /// </summary>
@@ -23,9 +25,11 @@ namespace WasmViewModelTest
             if (!DataContext.Initialized) // do once
             {
                 await DataContext.InitializeAsync();
+                
+                _componentClassName = this.GetType().Name;  
                 DataContext.PropertyChanged += (s, e) =>
                 {
-                    Console.WriteLine($"Statehaschanged: {s}");
+                    Console.WriteLine($"Statehaschanged in component {_componentClassName}, source {s}");
                     StateHasChanged();
                 };
             }

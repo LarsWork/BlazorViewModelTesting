@@ -1,14 +1,32 @@
-﻿@page "/"
+﻿@inherits ContextComponentBase
+@page "/"
 @using global::WasmViewModelTest
+
+@code{
+    [Inject]
+    public IndexPageViewModel IndexPageViewModel
+    {
+        get => base.DataContext as IndexPageViewModel;
+        set => base.DataContext = value;
+    }
+}
 
 <PageTitle>Index</PageTitle>
 
-<h1>Nestedobject test</h1>
+<h3>Calling StateHasChanged in CheckBoxCompoent only</h3>
 @{
-    SimpleViewModel vm = new SimpleViewModel();
+    CheckBoxViewModel checkboxViewModelWithoutParentSet = new CheckBoxViewModel();
 }
+<CascadingValue Value=checkboxViewModelWithoutParentSet>
+    <CheckboxComponent Name="1"></CheckboxComponent>
+    <CheckboxComponent Name="2"></CheckboxComponent>
+    <CheckboxComponent Name="3"></CheckboxComponent>
+</CascadingValue>
 
-<CascadingValue Value=vm>
+
+<h3>Calling StateHasChanged of parent component works</h3>
+
+<CascadingValue Value=IndexPageViewModel.CheckBoxViewModel>
     <CheckboxComponent Name="1"></CheckboxComponent>
     <CheckboxComponent Name="2"></CheckboxComponent>
     <CheckboxComponent Name="3"></CheckboxComponent>

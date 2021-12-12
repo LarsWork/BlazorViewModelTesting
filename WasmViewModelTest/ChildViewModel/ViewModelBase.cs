@@ -12,6 +12,8 @@ namespace WasmViewModelTest
         /// </summary>
         public bool Initialized { get; set; }
 
+        public ViewModelBase Parent { get; set; }
+
         /// <summary>
         /// Initialize view model
         /// </summary>
@@ -35,7 +37,24 @@ namespace WasmViewModelTest
         // ReSharper disable once UnusedMember.Global
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (Parent != null)
+            {
+                Parent.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+            else
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public void AddChildViewModel(ViewModelBase childViewModel)
+        {
+            childViewModel.SetParent(this);
+        }
+
+        protected void SetParent(ViewModelBase parent)
+        {
+            Parent = parent;
         }
     }
 }

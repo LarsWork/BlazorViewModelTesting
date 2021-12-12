@@ -2,14 +2,14 @@
 @inherits ContextComponentBase
 @code {
     [CascadingParameter]
-    public SimpleViewModel SimpleViewModel
+    public CheckBoxViewModel CheckBoxViewModel
     {
-        get => base.DataContext as SimpleViewModel;
+        get => base.DataContext as CheckBoxViewModel;
         set => base.DataContext = value;
     }
     [Parameter]
     public string? Name { get; set; }
 }
 <div>
-    Checkbox @Name: <input type="checkbox" @bind=SimpleViewModel.CheckBoxState></input>
+    Checkbox @Name: <input type="checkbox" @bind=CheckBoxViewModel.CheckBoxState></input>
 </div>
